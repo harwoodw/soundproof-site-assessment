@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./app.css";
 
 type Light = "GREEN" | "YELLOW" | "RED";
@@ -718,7 +718,10 @@ function ResultsBreakdown({ answers }: { answers: Answers }) {
     return QUESTIONS.map((q) => {
       const picked = asArray(answers[q.id] as any);
       const opts = picked.map((id) => q.options.find((o) => o.id === id)).filter(Boolean) as Option[];
-      const maxImpact = (opts.reduce((m, o) => Math.max(m, o.impact ?? 0), 0) as 0 | 1 | 2 | 3 | 4) ?? 0;
+    const maxImpact = Math.min(
+  4,
+  Math.max(0, opts.reduce<number>((m, o) => Math.max(m, o.impact ?? 0), 0))
+) as 0 | 1 | 2 | 3 | 4;
       return { q, opts, maxImpact };
     });
   }, [answers]);
