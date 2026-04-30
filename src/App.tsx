@@ -927,10 +927,6 @@ export default function App() {
                   Book a Call
                 </button>
               </div>
-
-              <div className="muted" style={{ fontSize: 12 }}>
-                Replace the “Book a Call” URL when you publish.
-              </div>
             </div>
           </div>
         </aside>
